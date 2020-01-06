@@ -30,6 +30,6 @@ M.Datepicker.init(datepickers, {
     showClearBtn: true,
 });
 
-export function getDatepickerInstance(elem) {
+export function getDatePickerInstance(elem) {
     return M.Datepicker.getInstance(elem);
 }
