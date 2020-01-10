@@ -36,5 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
             currency,
         });
 
+        console.log(locations.lastSearch);
+
     }
 });

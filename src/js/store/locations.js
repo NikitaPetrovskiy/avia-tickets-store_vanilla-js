@@ -6,6 +6,7 @@ class Locations {
         this.countries = null;
         this.cities = null;
         this.shortCitiesList = {};
+        this.lastSearch = {};
         this.airlines = {};
     }
 
@@ -90,9 +91,17 @@ class Locations {
 
     async fetchTickets(params) {
         const response = await this.api.prices(params);
+        this.lastSearch = this.serializeTickets(response.data);
+    }
 
-        //test watching
-        console.log(response);
+    serializeTickets(tickets) {
+        return Object.values(tickets).map(ticket => ({
+            ...ticket,
+            origin_name: this.getCityNameByCode(ticket.origin),
+            destination_name: this.getCityNameByCode(ticket.destination),
+            airline_logo: this.getAirlineLogoByCode(ticket.airline),
+            airline_name: this.getAirlineNameByCode(ticket.airline),
+        }));
     }
 }
 
