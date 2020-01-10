@@ -18,6 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
     async function initApp() {
         const res = await locations.init();
         formUI.setAutocompleteData(locations.shortCitiesList);
+        console.log('done!');
     }
 
     async function onFormSubmit() {
@@ -25,6 +26,13 @@ document.addEventListener('DOMContentLoaded', () => {
         const destination = locations.getCityByCode(formUI.destinationValue);
         const depart_date =  formUI.departDateValue;
         const return_date = formUI.returnDateValue;
+
+        await locations.fetchTickets({
+            origin,
+            destination,
+            depart_date,
+            return_date,
+        });
 
     }
 });
